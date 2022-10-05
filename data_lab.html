@@ -1,0 +1,35 @@
+<html>
+
+<body>
+    <h2>News</h2>
+
+    <p id="demo"></p>
+
+    <div></div>
+
+    <script>
+        let output = document.querySelector("div");
+
+        let news = [
+            { id: 1, title: 'News1', content: "bla" },
+            { id: 2, title: 'News2', content: "ble" },
+            { id: 3, title: 'News3', content: "blu" }
+        ];
+
+        let timer = null;
+
+        let index = 0;
+
+        function printNews() {
+            for (items in news) {
+                output.innerHTML += `<p>${news[items].title} : ${news[items].content}<\p>`
+            }
+        }
+
+        timer = setInterval(printNews, 3000);
+        setTimeout(()=>{clearInterval(timer)}, 7000);
+
+    </script>
+</body>
+
+</html>

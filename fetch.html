@@ -1,0 +1,74 @@
+<html>
+
+<body>
+    <div id="card-list"></div>
+</body>
+
+</html>
+
+<template id="card-template">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title"></div>
+            <div class="card-text"></div>
+        </div>
+    </div>
+</template>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #e3f2fd;
+    }
+
+    .card {
+        padding: 10px;
+    }
+
+    .card-body{
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    .card-title {
+        font-weight: 600;
+        font-size: 3em;
+        padding: 0 0 10px 0;
+    }
+
+    .card-description {
+        font-weight: 400;
+        font-size: 2em;
+    }
+</style>
+
+<script>
+
+    let fetchData = () => {
+        fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
+            .then((response) => response.json())
+
+            .then((json) => {
+                console.log(json);
+
+                json.forEach((card) => addCard(card));
+            });
+    };
+
+    fetchData();
+
+    function addCard(...data) {
+        let elems = [];
+
+        for (i in data) {
+            const template = document.getElementById("card-template").content.cloneNode(true);
+            template.querySelector('.card-title').innerText = data[i].title;
+            template.querySelector('.card-text').innerText = data[i].body;
+            elems.push(template);
+        }
+
+        let cardList = document.querySelector("#card-list")
+        cardList.append(...elems);
+    }
+
+</script>

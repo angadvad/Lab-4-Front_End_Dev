@@ -1,0 +1,78 @@
+Slide 58
+<!DOCTYPE html>
+
+<html>
+
+<body>
+  <h2>News</h2>
+
+  <form onsubmit="return false">
+    <label for="newsTitle">news title:</label><br />
+
+    <input type="text" id="newsTitle" name="newsTitle" /><br />
+
+    <label for="newsContent">news content:</label><br />
+
+    <input type="text" id="newsContent" name="newsContent" /><br /><br />
+
+    <button id="update">submit</button>
+
+    <div id="msg">
+      <pre></pre>
+    </div>
+  </form>
+
+  <script>
+    let news = [
+      {
+        id: 1,
+        title: "News1",
+        content: "bla",
+      },
+
+      {
+        id: 2,
+        title: "News2",
+        content: "blabla",
+      },
+
+      {
+        id: 3,
+        title: "News3",
+        content: "blablabla",
+      },
+    ];
+
+    const output = document.querySelector("pre");
+
+    function printNews() {
+      for (items in news) {
+        output.innerHTML += `<p>${news[items].title} : ${news[items].content}<\p>`
+      }
+      console.log('abc');
+    }
+
+
+    const addNews = (ev) => {
+      let nT = document.getElementById("newsTitle");
+      let nC = document.getElementById("newsContent");
+      let nTValue = nT.value ? nT.value : 'Default News';
+      let nCValue = nC.value ? nC.value : 'Default Content';
+      let idNum = news.length+1;
+      news.push({id:idNum, title: nTValue, content: nCValue});
+      output.innerHTML = null;
+      nT.value=null;
+      nC.value=null;
+      printNews();
+    };
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("update").addEventListener("click", addNews);
+    });
+
+    printNews();
+
+  </script>
+</body>
+
+</html>
