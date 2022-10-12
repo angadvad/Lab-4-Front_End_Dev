@@ -21,13 +21,15 @@
         let index = 0;
 
         function printNews() {
-            for (items in news) {
+            output.innerHTML = '' //this clears the previous items to write them fresh every time
+            console.log('printing news')
+            for (items in news) { //don't forget the 'let' so: for (let items in news)
                 output.innerHTML += `<p>${news[items].title} : ${news[items].content}<\p>`
             }
         }
 
         timer = setInterval(printNews, 3000);
-        setTimeout(()=>{clearInterval(timer)}, 7000);
+        setTimeout(()=>{clearInterval(timer)}, 30000);
 
     </script>
 </body>

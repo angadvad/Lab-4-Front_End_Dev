@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<style>
+<style> /* this usually goes inside the <head> tag */
     body {
         font-family: Arial, Helvetica, sans-serif;
         background-color: #e3f2fd;
@@ -42,7 +42,7 @@
     }
 </style>
 
-<script>
+<script> //usually goes just before </body>
 
     let fetchData = () => {
         fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
@@ -57,18 +57,18 @@
 
     fetchData();
 
-    function addCard(...data) {
-        let elems = [];
+    function addCard(data) { //much simpler to just pass each individual card
+        //let elems = [];
 
-        for (i in data) {
+        //for (i in data) { //instead of duplicating the loop here and in the foreach on line 54
             const template = document.getElementById("card-template").content.cloneNode(true);
-            template.querySelector('.card-title').innerText = data[i].title;
-            template.querySelector('.card-text').innerText = data[i].body;
-            elems.push(template);
-        }
+            template.querySelector('.card-title').innerText = data.title;
+            template.querySelector('.card-text').innerText = data.body;
+         //   elems.push(template);
+        //}
 
         let cardList = document.querySelector("#card-list")
-        cardList.append(...elems);
+        cardList.append(template);
     }
 
 </script>

@@ -46,6 +46,7 @@ Slide 58
     const output = document.querySelector("pre");
 
     function printNews() {
+      output.innerHTML = null;
       for (items in news) {
         output.innerHTML += `<p>${news[items].title} : ${news[items].content}<\p>`
       }
@@ -60,17 +61,18 @@ Slide 58
       let nCValue = nC.value ? nC.value : 'Default Content';
       let idNum = news.length+1;
       news.push({id:idNum, title: nTValue, content: nCValue});
-      output.innerHTML = null;
+      
       nT.value=null;
       nC.value=null;
-      printNews();
+      //printNews(); //don't print straight away, wait for the timer to pick it up
     };
     
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("update").addEventListener("click", addNews);
     });
 
-    printNews();
+    timer = setInterval(printNews, 3000); //keep the timer function from last time so it prints all news items every 3 secs
+    setTimeout(()=>{clearInterval(timer)}, 30000);
 
   </script>
 </body>
